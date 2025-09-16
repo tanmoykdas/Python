@@ -5,7 +5,7 @@ def bisection(f, a, b, tol = 1e-6, max = 100):
     for i in range(max):
         c = (a + b) / 2
         print(f"after {i + 1} iterration c = {c:.4f} and f(c) = {f(c):.6f}")
-        if abs(f(c)) < tol or abs(b - a) < tol:
+        if abs(f(c)) < tol:
             print(f"the root is {c:.6f} after {i + 1} iterations")
             return c
         if (f(c) * f(a) < 0):
