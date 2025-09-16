@@ -1,3 +1,4 @@
+# Iterative Method to find root of the equation x^3 + x - 1 = 0
 def iteration(g, x0, tol=12e-6, max_iter=100):
     for i in range(max_iter):
         x1 = g(x0)
