@@ -1,3 +1,4 @@
+# Bisection Method to find the root of a function
 def bisection(f, a, b, tol = 1e-6, max = 100):
     if f(a) * f(b) >= 0:
         print("Bisection method fails.")
