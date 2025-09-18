@@ -1,44 +1,33 @@
 import copy
+def elimination(b, n):
 
-def print_arr(arr, N):
-    for i in range(N):
-        print(arr[i])
-
-def gauss_elimination(arr, N):
-    for i in range(N):
-        for j in range(N):
-            arr[i][j] /= arr[i][i]
-        
-        for j in range(i+1, N):
-            factor = arr[j][i]
-            for k in range(i, N+1):
-                arr[j][k] -= arr[i][k] * factor
-
-        print("After elimination step", i+1)
-        print_arr(arr, N)
+    #forward elimination
+    for i in range(n):
+        for j in range(i+1,n):
+            factor = b[j][i]/b[i][i]
+            for k in range(i,n+1):
+                b[j][k] -= factor * b[i][k]
+        for l in range(n): #printing array after one row operation
+            print(b[l])
         print()
 
-    solve = [0] * N
-    for i in range(N-1, -1, -1):
-        solve[i] = arr[i][N]
-        for j in range(i+1, N):
-            solve[i] -= arr[i][j] * solve[j]
-        solve[i] /= arr[i][i]
+    #back substitution   
+    solve = [0] * n
+    for i in range(n-1, -1, -1):
+        solve[i] = a[i][n]
+        for j in range(i+1,n):
+            solve[i] -= b[i][j] * solve[j]
+        solve[i] /= b[i][i]
 
-    print("Solution:", solve)
+    print("final soltuion", solve)
     return solve
 
-N = 3
-arr = [
-    [2, 1, -1, 8],
-    [-3, -1, 2, -11],
-    [-2, 1, 2, -3]
+a = [
+    [3,-0.1,-0.2,7.85],
+    [0.1,7,-0.3,-19.3],
+    [0.3,-0.2,10,71.4]
 ]
 
-arr_copy = copy.deepcopy(arr)
-
-print("Initial matrix:")
-print_arr(arr, N)
-print()
-
-gauss_elimination(arr_copy, N)
+b = copy.deepcopy(a)
+n = 3
+elimination(b, n)
