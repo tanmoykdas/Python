@@ -23,4 +23,4 @@ def idfs(tree, start, limit):
                         stack.append((child, depth + 1))
 
 
-idfs(tree,"A", 3)
+idfs(tree,"A", 4)

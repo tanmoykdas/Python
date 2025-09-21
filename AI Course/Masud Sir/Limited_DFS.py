@@ -23,4 +23,4 @@ def lim_dfs(tree,start,limit):
     print(f"Limited DFS is complete for limit = {limit}")
 
 
-lim_dfs(tree,"A",2)
+lim_dfs(tree,"A",3)
