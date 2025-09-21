@@ -16,7 +16,7 @@ def limited_dfs(tree, start, limit):
         if node not in visited:
             print(node)
             visited.add(node)
-            if depth < limit:
+            if depth < limit - 1:
                 for child in tree[node]:
                     stack.append((child, depth + 1))
     print(f"Limited DFS complete (limit={limit})")
