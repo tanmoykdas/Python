@@ -20,27 +20,20 @@ G = {
     "Iasi": [("Vaslui", 92), ("Neamt", 87)],
     "Neamt": [("Iasi", 87)],
 }
-
-
 from heapq import heappush, heappop
-
-def ucs(graph,start,goal):
-    frontier = []
-    heappush(frontier,(0,start,[start]))
+def ucs(graph, start, goal):
+    frontire = []
+    heappush(frontire, (0, start, [start]))
     best_graph = {start: 0}
-
-    while frontier:
-        path_cost,node,path_list=heappop(frontier)
+    while frontire:
+        path_cost, node, path_list = heappop(frontire)
         if node == goal:
             return path_cost,path_list
-        for child , child_cost in graph[node]:
+        for child, child_cost in graph[node]:
             updated_cost = child_cost + path_cost
             if child not in best_graph or updated_cost < best_graph[child]:
                 best_graph[child] = updated_cost
-                heappush(frontier,(updated_cost,child,path_list+[child]))
+                heappush(frontire,(updated_cost, child, path_list + [child]))
+    return None, float('inf')
 
-    return None,float('inf')
-
-cost,path=ucs(G,"Arad","Bucharest")
-print("Path : ",' -> '.join(path))
-print("Cost : ",cost)
+print(ucs(G, "Arad", "Bucharest"))

@@ -21,26 +21,28 @@ G = {
     "Neamt": [("Iasi", 87)],
 }
 
+H = {
+    "Arad": 366, "Bucharest": 0, "Craiova": 160, "Drobeta": 242, "Eforie": 161,
+    "Fagaras": 176, "Giurgiu": 77, "Hirsova": 151, "Iasi": 226, "Lugoj": 244,
+    "Mehadia": 241, "Neamt": 234, "Oradea": 380, "Pitesti": 100,
+    "Rimnicu Vilcea": 193, "Sibiu": 253, "Timisoara": 329, "Urziceni": 80,
+    "Vaslui": 199, "Zerind": 374,
+}
 
-from heapq import heappush, heappop
 
-def ucs(graph,start,goal):
+def best_first_search(graph, heuristic, start, goal):
+    from heapq import heappop, heappush
+
     frontier = []
-    heappush(frontier,(0,start,[start]))
-    best_graph = {start: 0}
+    heappush(frontier, (heuristic[start], 0, start, [start]))
 
     while frontier:
-        path_cost,node,path_list=heappop(frontier)
+        cost, path_cost, node, path_list = heappop(frontier)
         if node == goal:
-            return path_cost,path_list
-        for child , child_cost in graph[node]:
-            updated_cost = child_cost + path_cost
-            if child not in best_graph or updated_cost < best_graph[child]:
-                best_graph[child] = updated_cost
-                heappush(frontier,(updated_cost,child,path_list+[child]))
+            return path_cost, path_list
+        for child, child_cost in graph[node]:
+            updated_cost = 
 
-    return None,float('inf')
+    return None
 
-cost,path=ucs(G,"Arad","Bucharest")
-print("Path : ",' -> '.join(path))
-print("Cost : ",cost)
+print(best_first_search(G, H, "Arad", "Bucharest"))
